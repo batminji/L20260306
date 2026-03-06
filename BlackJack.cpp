@@ -7,7 +7,7 @@ int main()
 	int ComputerCard[3] = {};
 	int MyCard[3] = {};
 
-	int ComputerResult = 0;
+	int ComputerResult = 0; 
 	int MyResult = 0;
 
 	int Card[4][12] = {
