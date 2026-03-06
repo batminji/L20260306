@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="BlackJack.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
