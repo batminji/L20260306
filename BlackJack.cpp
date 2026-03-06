@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <random>
 
 int main()
@@ -16,22 +16,42 @@ int main()
 		{1, 2, 3, 4, 5, 6, 7, 8, 9, 'J', 'Q', 'K'}
 	};
 
-	std::cout << "ÄÄÇ»ÅÍ Ä«µå »Ì±â" << std::endl;
+	bool bCardPicked[4][12] = { false, };
+
+	std::cout << "ì»´í“¨í„° ì¹´ë“œ ë½‘ê¸°" << std::endl;
 	for (int i = 0; i < 3; ++i)
 	{
 		int CardShape = rand() % 4;
 		int CardNum = rand() % 12;
 
 		ComputerCard[i] = Card[CardShape][CardNum];
+
+		if (bCardPicked[CardShape][CardNum])
+		{
+			--i;
+		}
+		else
+		{
+			bCardPicked[CardShape][CardNum] = true;
+		}
 	}
 
-	std::cout << "³» Ä«µå »Ì±â" << std::endl;
+	std::cout << "ë‚´ ì¹´ë“œ ë½‘ê¸°" << std::endl;
 	for (int i = 0; i < 3; ++i)
 	{
 		int CardShape = rand() % 4;
 		int CardNum = rand() % 12;
 
 		MyCard[i] = Card[CardShape][CardNum];
+
+		if (bCardPicked[CardShape][CardNum])
+		{
+			--i;
+		}
+		else
+		{
+			bCardPicked[CardShape][CardNum] = true;
+		}
 	}
 
 	for (int i = 0; i < 3; ++i)
@@ -56,29 +76,29 @@ int main()
 	}
 
 	std::cout << std::endl;
-	std::cout << "ÄÄÇ»ÅÍ Ä«µå ÃÑÇÕ : " << ComputerResult << std::endl;
-	std::cout << "³» Ä«µå ÃÑÇÕ : " << MyResult << std::endl;
+	std::cout << "ì»´í“¨í„° ì¹´ë“œ ì´í•© : " << ComputerResult << std::endl;
+	std::cout << "ë‚´ ì¹´ë“œ ì´í•© : " << MyResult << std::endl;
 	if (ComputerResult > 21 && MyResult > 21)
 	{
-		std::cout << "µÑ ´Ù Á³½À´Ï´Ù" << std::endl;
+		std::cout << "ë‘˜ ë‹¤ ì¡ŒìŠµë‹ˆë‹¤" << std::endl;
 	}
 	else if (ComputerResult > 21)
 	{
-		std::cout << "´ç½ÅÀÌ ½Â¸®Çß½À´Ï´Ù" << std::endl;
+		std::cout << "ë‹¹ì‹ ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤" << std::endl;
 	}
 	else if (MyResult > 21)
 	{
-		std::cout << "´ç½ÅÀÌ ÆÐ¹èÇß½À´Ï´Ù" << std::endl;
+		std::cout << "ë‹¹ì‹ ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤" << std::endl;
 	}
 	else
 	{
 		if (ComputerResult > MyResult)
 		{
-			std::cout << "´ç½ÅÀÌ ÆÐ¹èÇß½À´Ï´Ù" << std::endl;
+			std::cout << "ë‹¹ì‹ ì´ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤" << std::endl;
 		}
 		else
 		{
-			std::cout << "´ç½ÅÀÌ ½Â¸®Çß½À´Ï´Ù" << std::endl;
+			std::cout << "ë‹¹ì‹ ì´ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤" << std::endl;
 		}
 	}
 }
