@@ -1,10 +1,37 @@
 #include <iostream>
+#include <string>
 
 #define CARDSIZE	52
+
+std::string PrintCard(int CardNumber)
+{
+	int Shape = (CardNumber % 13 + 1);
+
+	if (Shape == 11)
+	{
+		return "J";
+	}
+	else if (Shape == 12)
+	{
+		return "K";
+	}
+	else if (Shape == 13)
+	{
+		return "K";
+	}
+	else if (Shape == 1)
+	{
+		return "A";
+	}
+
+	return std::to_string(Shape);
+}
 
 int main()
 {
 	int Cards[CARDSIZE] = { 0, };
+	std::string CardType[4] = { "Heart", "Spade", "Diamond" , "Clover" };
+
 	for (int i = 0; i < CARDSIZE; ++i)
 	{
 		Cards[i] = i;
@@ -61,6 +88,24 @@ int main()
 	else
 	{
 		std::cout << "Player Win" << std::endl;
+	}
+
+	std::cout << std::endl << "Computer Card" << std::endl;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		int CardTypeIndex = ComputerCard[i] / 13;
+		
+		std::cout << CardType[CardTypeIndex] << " " << PrintCard(ComputerCard[i]) << std::endl;
+	}
+
+	std::cout << std::endl << "Player Card" << std::endl;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		int CardTypeIndex = PlayerCard[i] / 13;
+
+		std::cout << CardType[CardTypeIndex] << " " << PrintCard(PlayerCard[i]) << std::endl;
 	}
 
 	return 0;
