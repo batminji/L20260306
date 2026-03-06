@@ -6,6 +6,15 @@
 int Cards[CARDSIZE] = { 0, };
 std::string CardType[4] = { "Heart", "Spade", "Diamond" , "Clover" };
 
+int ComputerCard[3];
+int PlayerCard[3];
+
+int ComputerScore[3];
+int PlayerScore[3];
+
+int TotalComputerScore;
+int TotalPlayerScore;
+
 void Init()
 {
 	for (int i = 0; i < CARDSIZE; ++i)
@@ -30,8 +39,7 @@ void Shuffle()
 }
 
 // Deal
-int ComputerCard[3] = {};
-int PlayerCard[3] = {};
+
 void Deal()
 {
 	for (int i = 0; i < 3; ++i)
@@ -41,8 +49,7 @@ void Deal()
 	}
 }
 
-int ComputerScore[3] = { 0, };
-int PlayerScore[3] = { 0, };
+
 void PreProcess()
 {
 	for (int i = 0; i < 3; ++i)
@@ -77,9 +84,6 @@ std::string PrintCard(int CardNumber)
 
 	return std::to_string(Shape);
 }
-
-int TotalComputerScore;
-int TotalPlayerScore;
 
 void Draw()
 {
