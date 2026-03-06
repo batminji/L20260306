@@ -1,21 +1,20 @@
 #include <iostream>
 
-void Swap(int* Num1, int* Num2)
+int StringLength(char* C)
 {
-	int Temp = *Num1;
-	*Num1 = *Num2;
-	*Num2 = Temp;
+	int Length = 0;
+	while (C[Length] != '\0')
+	{
+		Length++;
+	}
+	return Length;
 }
 
 int main()
 {
-	int A = 10;
-	int B = 20;
+	char C[12] = "Hello World";
 
-	Swap(&A, &B);
-
-	std::cout << "A : " << A << std::endl;
-	std::cout << "B : " << B << std::endl;
+	std::cout << StringLength(C) << std::endl;
 
 	return 0;
 }
