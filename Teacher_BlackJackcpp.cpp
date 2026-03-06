@@ -3,6 +3,57 @@
 
 #define CARDSIZE	52
 
+int Cards[CARDSIZE] = { 0, };
+std::string CardType[4] = { "Heart", "Spade", "Diamond" , "Clover" };
+
+void Init()
+{
+	for (int i = 0; i < CARDSIZE; ++i)
+	{
+		Cards[i] = i;
+	}
+}
+
+void Shuffle()
+{
+	srand((unsigned int)time(nullptr));
+
+	for (int i = 0; i < CARDSIZE * 10; ++i)
+	{
+		int FirstIndex = rand() % CARDSIZE;
+		int SecondIndex = rand() % CARDSIZE;
+
+		int Temp = Cards[FirstIndex];
+		Cards[FirstIndex] = Cards[SecondIndex];
+		Cards[SecondIndex] = Temp;
+	}
+}
+
+// Deal
+int ComputerCard[3] = {};
+int PlayerCard[3] = {};
+void Deal()
+{
+	for (int i = 0; i < 3; ++i)
+	{
+		ComputerCard[i] = Cards[i * 2];
+		PlayerCard[i] = Cards[(i * 2) + 1];
+	}
+}
+
+int ComputerScore[3] = { 0, };
+int PlayerScore[3] = { 0, };
+void PreProcess()
+{
+	for (int i = 0; i < 3; ++i)
+	{
+		ComputerScore[i] = ComputerCard[i] % 13 + 1;
+		ComputerScore[i] > 10 ? 10 : ComputerScore[i];
+		PlayerScore[i] = PlayerCard[i] % 13 + 1;
+		PlayerScore[i] > 10 ? 10 : PlayerScore[i];
+	}
+}
+
 std::string PrintCard(int CardNumber)
 {
 	int Shape = (CardNumber % 13 + 1);
@@ -27,51 +78,13 @@ std::string PrintCard(int CardNumber)
 	return std::to_string(Shape);
 }
 
-int main()
+int TotalComputerScore;
+int TotalPlayerScore;
+
+void Draw()
 {
-	int Cards[CARDSIZE] = { 0, };
-	std::string CardType[4] = { "Heart", "Spade", "Diamond" , "Clover" };
-
-	for (int i = 0; i < CARDSIZE; ++i)
-	{
-		Cards[i] = i;
-	}
-
-	// Shuffle
-	srand((unsigned int)time(nullptr));
-	for (int i = 0; i < CARDSIZE * 10; ++i)
-	{
-		int FirstIndex = rand() % CARDSIZE;
-		int SecondIndex = rand() % CARDSIZE;
-
-		int Temp = Cards[FirstIndex];
-		Cards[FirstIndex] = Cards[SecondIndex];
-		Cards[SecondIndex] = Temp;
-	}
-
-	// Roll
-	int ComputerCard[3] = {};
-	int PlayerCard[3] = {};
-	for (int i = 0; i < 3; ++i)
-	{
-		ComputerCard[i] = Cards[i * 2];
-		PlayerCard[i] = Cards[( i * 2 ) + 1];
-	}
-
-	// PreProcess
-	int ComputerScore[3] = { 0, };
-	int PlayerScore[3] = { 0, };
-	for (int i = 0; i < 3; ++i)
-	{
-		ComputerScore[i] = ComputerCard[i] % 13 + 1;
-		ComputerScore[i] > 10 ? 10 : ComputerScore[i];
-		PlayerScore[i] = PlayerCard[i] % 13 + 1;
-		PlayerScore[i] > 10 ? 10 : PlayerScore[i];
-	}
-
-	// Draw
-	int TotalComputerScore = ComputerScore[0] + ComputerScore[1] + ComputerScore[2];
-	int TotalPlayerScore = PlayerScore[0] + PlayerScore[1] + PlayerScore[2];
+	TotalComputerScore = ComputerScore[0] + ComputerScore[1] + ComputerScore[2];
+	TotalPlayerScore = PlayerScore[0] + PlayerScore[1] + PlayerScore[2];
 
 	if (TotalComputerScore > 21)
 	{
@@ -95,7 +108,7 @@ int main()
 	for (int i = 0; i < 3; ++i)
 	{
 		int CardTypeIndex = ComputerCard[i] / 13;
-		
+
 		std::cout << CardType[CardTypeIndex] << " " << PrintCard(ComputerCard[i]) << std::endl;
 	}
 
@@ -107,6 +120,20 @@ int main()
 
 		std::cout << CardType[CardTypeIndex] << " " << PrintCard(PlayerCard[i]) << std::endl;
 	}
+}
+
+int main()
+{
+	// 절차지향 프로그래밍
+	Init();
+
+	Shuffle();
+
+	Deal();
+
+	PreProcess();
+
+	Draw();
 
 	return 0;
 }
