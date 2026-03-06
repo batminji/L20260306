@@ -18,5 +18,8 @@
     <ClCompile Include="BlackJack.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Teacher_BlackJackcpp.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

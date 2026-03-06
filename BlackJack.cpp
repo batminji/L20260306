@@ -1,9 +1,8 @@
 ﻿#include <iostream>
-#include <random>
 
 int main()
 {
-	srand(static_cast<unsigned int>(time(NULL)));
+	srand((unsigned int)time(nullptr));
 
 	int ComputerCard[3] = {};
 	int MyCard[3] = {};
